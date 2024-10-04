@@ -12,7 +12,7 @@ namespace Crowdy.DAL.Database
         public DbSet<ProjectThreshold> ProjectThresholds { get; set; }
         public DbSet<ProjectContribution> ProjectContributions { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Status> Statuss { get; set; }
+        public DbSet<Status> Statuses { get; set; }
         public DbSet<Role> Roles { get; set; }
 
         #endregion

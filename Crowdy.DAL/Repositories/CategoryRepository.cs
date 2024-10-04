@@ -1,33 +1,50 @@
-﻿using Crowdy.DAL.Entities;
+﻿using Crowdy.DAL.Database;
+using Crowdy.DAL.Entities;
 using Crowdy.DAL.Repositories.Interfaces;
 
 namespace Crowdy.DAL.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
+        private readonly ApplicationContext _context;
+
+        public CategoryRepository(ApplicationContext context)
+        {
+            _context = context;
+        }
+
         public Category Create(Category entity)
         {
-            throw new NotImplementedException();
+            _context.Categories.Add(entity);
+            _context.SaveChanges();
+
+            return entity;
         }
 
         public bool Delete(Category entity)
         {
-            throw new NotImplementedException();
+            _context.Categories.Remove(entity);
+            _context.SaveChanges();
+
+            return true;
         }
 
         public List<Category> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Categories.ToList();
         }
 
         public Category? GetOneById(int key)
         {
-            throw new NotImplementedException();
+            return _context.Categories.FirstOrDefault(u => u.Id == key);
         }
 
         public Category Update(Category entity)
         {
-            throw new NotImplementedException();
+            _context.Categories.Update(entity);
+            _context.SaveChanges();
+
+            return entity;
         }
     }
 }
