@@ -8,7 +8,7 @@ namespace Crowdy.BLL.Services
 {
     public class AuthService
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        /*private readonly IHttpContextAccessor _httpContextAccessor;
 
         public AuthService(IHttpContextAccessor httpContextAccessor)
         {
@@ -27,7 +27,7 @@ namespace Crowdy.BLL.Services
                 byte[] idBytes = BitConverter.GetBytes(user.Id);
                 context.Session.Set("UserId", idBytes);
             }
-        }
+        }*/
 
         public string HashPassword(string plainPassword)
         {
