@@ -1,4 +1,9 @@
+using Crowdy.BLL.Services;
+using Crowdy.BLL.Services.Interfaces;
 using Crowdy.DAL.Database;
+using Crowdy.DAL.Entities;
+using Crowdy.DAL.Repositories;
+using Crowdy.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +15,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationContext>(
     b => b.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
 );
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<FileService>();
 
 var app = builder.Build();
 
