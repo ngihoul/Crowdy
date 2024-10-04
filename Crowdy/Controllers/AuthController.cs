@@ -31,25 +31,21 @@ namespace Crowdy.Controllers
         [HttpPost]
         public IActionResult Login([FromForm] AuthLoginFormModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    User user = _userService.GetOneByEmail(model.Email);
-                    if (_authService.VerifyPassword(model.Password, user.Password))
-                    {
-                        _authService.InitSession(user);
-                        ViewBag.Success = "Connecté avec succès.";
-
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-                catch (Exception e)
-                {
-                    ViewBag.Error = e.Message;
-                }
+                return View(model);
             }
 
+            User user = _userService.GetOneByEmail(model.Email);
+            if (_authService.VerifyPassword(model.Password, user.Password))
+            {
+                // _authService.InitSession(user);
+                TempData["Success"] = "Connecté avec succès.";
+
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+
+            ViewBag.Error = "Une erreur est survenue.";
             return View(model);
         }
 

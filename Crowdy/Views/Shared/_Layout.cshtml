@@ -37,18 +37,6 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @if (ViewBag.Error != null)
-            {
-                <div class="alert alert-danger mt-3" role="alert">
-                    @ViewBag.Error
-                </div>
-            }
-            @if (ViewBag.Success != null)
-            {
-                <div class="alert alert-success mt-3" role="alert">
-                    @ViewBag.Success
-                </div>
-            }
             @RenderBody()
         </main>
     </div>

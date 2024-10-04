@@ -6,9 +6,11 @@
 
 <h1>Se connecter</h1>
 
+<partial name="_Alert" />
+
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Login">
+        <form asp-controller="Auth" asp-action="Login">
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
