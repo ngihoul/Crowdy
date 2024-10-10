@@ -9,10 +9,16 @@
 
 <div class="container">
     @* Hero *@
-    <div class="heading mb-5">
-        <h1>Les projets en cours</h1>
+    <div class="heading d-flex justify-content-between mb-5">
+        <h1>Les projets en cours @(TempData["search"] != null ? $"({TempData["search"]})" : "")</h1>
+
+        <form asp-controller="Project" asp-action="Search" method="GET" class="d-flex" role="search">
+            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+        </form>
     </div>
 
+    <partial name="_Alert" />
 
     <div class="row align-self-center">
         @foreach (var project in Model)
@@ -23,7 +29,7 @@
 
             int progress = contributionService.CalculateProgression(project.Contributions, project.Objective);
 
-            <div class="col-12 col-lg-3 col-md-6 col-sm-12">
+            <div class="col-12 col-lg-3 col-md-6 col-sm-12 mt-3">
                 <a asp-controller="Project" asp-action="Details" asp-route-id="@project.Id">
                     <div class="card shadow d-flex flex-column justify-content-between mb-5" style="width: 18rem;">
                         <div class="card-header">

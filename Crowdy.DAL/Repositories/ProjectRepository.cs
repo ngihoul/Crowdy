@@ -22,6 +22,16 @@ namespace Crowdy.DAL.Repositories
                                     .ToList();
         }
 
+
+        public List<Project> GetAllByKeyword(string keyword)
+        {
+            return _context.Projects.Include(p => p.Categories)
+                                    .Include(p => p.ProjectContributions)
+                                    .Include(p => p.Status)
+                                    .Where(p => p.Title.Contains(keyword) || p.Description.Contains(keyword))
+                                    .OrderBy(p => p.StartDate)
+                                    .ToList();
+        }
         public List<Project> GetAllValidated()
         {
             return _context.Projects.Include(p => p.Categories)

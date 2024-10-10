@@ -5,6 +5,7 @@ namespace Crowdy.BLL.Services.Interfaces
     public interface IProjectService : IService<int, Project>
     {
         public List<Project> GetAllValidated();
+        public List<Project> GetAllByKeyword(string keyword);
         public List<Project> GetLastProjectsToBeValidated(int nb);
         public List<Project> GetProjetsToValidate();
         public List<Project> GetLastProjectsValidated(int nb);

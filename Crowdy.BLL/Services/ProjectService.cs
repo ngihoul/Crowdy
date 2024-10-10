@@ -17,7 +17,7 @@ namespace Crowdy.BLL.Services
 
         public List<Project> GetAll()
         {
-            List<Project>? projects = _projectRepository.GetAll().ToList();
+            List<Project>? projects = _projectRepository.GetAll();
 
             if (projects.Count <= 0)
             {
@@ -27,9 +27,20 @@ namespace Crowdy.BLL.Services
             return projects;
         }
 
+        public List<Project> GetAllByKeyword(string keyword)
+        {
+            List<Project>? projects = _projectRepository.GetAllByKeyword(keyword);
+
+            if (projects.Count <= 0)
+            {
+                throw new Exception("Aucun projet n'a été trouvé.");
+            }
+
+            return projects;
+        }
         public List<Project> GetAllValidated()
         {
-            List<Project>? projects = _projectRepository.GetAllValidated().ToList();
+            List<Project>? projects = _projectRepository.GetAllValidated();
 
             if (projects.Count <= 0)
             {

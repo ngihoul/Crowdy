@@ -181,6 +181,30 @@ namespace Crowdy.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Search([FromQuery(Name = "search")] string search)
+        {
+            if(search == null)
+            {
+                return RedirectToAction(nameof(ProjectController.Index), "Project");
+            }
+
+            try
+            {
+                List<Project>? projects = _projectService.GetAllByKeyword(search);
+                List<ProjectViewModel> projectsViewModel = projects.Select(p => p.ToProjectViewModel()).ToList();
+
+                TempData["search"] = search;
+
+                return View("Index", projectsViewModel);
+            }catch(Exception e)
+            {
+                TempData["Error"] = e.Message;
+                
+                return RedirectToAction(nameof(ProjectController.Index), "Project");
+            }
+        }
+
         private void getCategories()
         {
             ViewBag.categories = _categoryService.GetAll();
