@@ -43,6 +43,7 @@ namespace Crowdy.Models
         [DisplayName("Photo de profil")]
         [FileExtensions(Extensions = "jpg,jpeg,png")]
         public string? Avatar { get; set; }
+
         [DisplayName("Date de naissance")]
         [Required]
         [DataType(DataType.Date)]

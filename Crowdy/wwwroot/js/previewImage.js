@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const previewContainer = document.querySelector('.preview-avatar');
+    const previewContainer = document.querySelector('.preview-container');
     const previewImg = document.querySelector('.preview-img');
-    const avatarInput = document.querySelector('.avatar');
+    const imageInput = document.querySelector('.image');
 
     previewContainer.style.display = 'none';
 
-    const displayAvatar = (e) => {
-        const file = avatarInput.files;
+    const displayImage = (e) => {
+        const file = imageInput.files;
 
         if (file) {
             previewContainer.style.display = 'block';
@@ -21,5 +21,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    avatarInput.addEventListener('change', displayAvatar);
+    imageInput.addEventListener('change', displayImage);
 });

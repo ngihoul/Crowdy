@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ProjectViewModel>
+
+@{
+    ViewData["Title"] = "Tous les projets";
+}
+
+<div class="container">
+    <h1 class="mb-5">@ViewData["Title"] (@ViewBag.nbProjects)</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Objective)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+                <tr>
+                    <td>
+                        @project.Title
+                    </td>
+                    <td>
+                        @project.Description
+                    </td>
+                    <td>
+                        @string.Format("{0:C2}", project.Objective)
+                    </td>
+                    <td>
+                        @project.StartDate
+                    </td>
+                    <td>
+                        @project.EndDate
+                    </td>
+                    <td>
+                        @project.Status.Name
+                    </td>
+                    <td>
+                        <a asp-controller="Project" asp-action="Details" asp-route-id="@project.Id" class="btn btn-primary">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

@@ -26,22 +26,22 @@ namespace Crowdy.DAL.Database.Configurations
                 new
                 {
                     Id = 1,
-                    Name = "To be validated"
+                    Name = "A valider"
                 },
                 new
                 {
                     Id = 2,
-                    Name = "Validated"
+                    Name = "Validé"
                 },
                 new
                 {
                     Id = 3,
-                    Name = "Rejected"
+                    Name = "Rejeté"
                 },
                 new
                 {
                     Id = 4,
-                    Name = "Closed"
+                    Name = "Terminé"
                 }
             );
         }

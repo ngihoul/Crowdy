@@ -41,6 +41,93 @@ namespace Crowdy.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("category", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Alimentation"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Art"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "BD & Comics"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Beauté"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Bijoux"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Cinéma & Vidéo"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Design"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Écologie"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Éducation"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Famille"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Mode"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Musique"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Photographie"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Santé"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Sport"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Technologie"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Voyage"
+                        });
                 });
 
             modelBuilder.Entity("Crowdy.DAL.Entities.Project", b =>
@@ -50,6 +137,9 @@ namespace Crowdy.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -62,6 +152,9 @@ namespace Crowdy.DAL.Migrations
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Objective")
                         .HasPrecision(12, 2)
@@ -104,6 +197,428 @@ namespace Crowdy.DAL.Migrations
                             t.HasCheckConstraint("CK_Project_Objective", "Objective > 0");
 
                             t.HasCheckConstraint("CK_Project_StartDate", "StartDate >= GETDATE()");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6017),
+                            Description = "Projet de maison intelligente",
+                            EndDate = new DateTime(2025, 1, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6015),
+                            ImageUrl = "project1.jpg",
+                            Objective = 10000m,
+                            OwnerId = 1,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(5961),
+                            StatusId = 1,
+                            Title = "Smart Home",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6019)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6025),
+                            Description = "Collection de peintures abstraites",
+                            EndDate = new DateTime(2025, 2, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6023),
+                            ImageUrl = "project2.jpg",
+                            Objective = 5000m,
+                            OwnerId = 2,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6022),
+                            StatusId = 1,
+                            Title = "Peinture Abstraite",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6027)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6032),
+                            Description = "Enregistrement d'un album de rock",
+                            EndDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6030),
+                            ImageUrl = "project3.jpg",
+                            Objective = 8000m,
+                            OwnerId = 3,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6029),
+                            StatusId = 1,
+                            Title = "Album Rock",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6033)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6039),
+                            Description = "Développement d'une application mobile",
+                            EndDate = new DateTime(2025, 4, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6037),
+                            ImageUrl = "project4.jpg",
+                            Objective = 15000m,
+                            OwnerId = 4,
+                            StartDate = new DateTime(2025, 1, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6035),
+                            StatusId = 1,
+                            Title = "Application Mobile",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6040)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6046),
+                            Description = "Organisation d'un concert live",
+                            EndDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6044),
+                            ImageUrl = "project5.jpg",
+                            Objective = 12000m,
+                            OwnerId = 5,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6042),
+                            StatusId = 1,
+                            Title = "Concert Live",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6047)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6052),
+                            Description = "Réalisation d'un film documentaire",
+                            EndDate = new DateTime(2025, 3, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6051),
+                            ImageUrl = "project6.jpg",
+                            Objective = 20000m,
+                            OwnerId = 6,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6049),
+                            StatusId = 1,
+                            Title = "Film Documentaire",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6054)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6060),
+                            Description = "Développement d'un jeu vidéo",
+                            EndDate = new DateTime(2025, 2, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6058),
+                            ImageUrl = "project7.jpg",
+                            Objective = 30000m,
+                            OwnerId = 7,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6057),
+                            StatusId = 1,
+                            Title = "Jeu Vidéo",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6061)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6067),
+                            Description = "Publication d'un livre de cuisine",
+                            EndDate = new DateTime(2025, 1, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6066),
+                            ImageUrl = "project8.jpg",
+                            Objective = 7000m,
+                            OwnerId = 8,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6064),
+                            StatusId = 1,
+                            Title = "Livre de Cuisine",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6069)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6074),
+                            Description = "Organisation d'un festival de musique",
+                            EndDate = new DateTime(2025, 4, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6072),
+                            ImageUrl = "project9.jpg",
+                            Objective = 25000m,
+                            OwnerId = 9,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6071),
+                            StatusId = 1,
+                            Title = "Festival de Musique",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6075)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6081),
+                            Description = "Lancement d'une startup technologique",
+                            EndDate = new DateTime(2025, 3, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6079),
+                            ImageUrl = "project10.jpg",
+                            Objective = 50000m,
+                            OwnerId = 10,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6077),
+                            StatusId = 1,
+                            Title = "Startup Technologique",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6082)
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6088),
+                            Description = "Développement d'une plateforme de réalité virtuelle immersive pour les jeux et les applications éducatives.",
+                            EndDate = new DateTime(2025, 3, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6086),
+                            ImageUrl = "project11.jpg",
+                            Objective = 40000m,
+                            OwnerId = 11,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6084),
+                            StatusId = 1,
+                            Title = "Projet de Réalité Virtuelle",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6089)
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6094),
+                            Description = "Installation de panneaux solaires dans les zones rurales pour fournir de l'énergie propre et renouvelable aux communautés locales.",
+                            EndDate = new DateTime(2025, 4, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6092),
+                            ImageUrl = "project12.jpg",
+                            Objective = 35000m,
+                            OwnerId = 12,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6091),
+                            StatusId = 1,
+                            Title = "Énergie Solaire",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6095)
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6101),
+                            Description = "Restauration d'un bâtiment historique pour préserver le patrimoine culturel et architectural de la région.",
+                            EndDate = new DateTime(2025, 2, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6099),
+                            ImageUrl = "project13.jpg",
+                            Objective = 25000m,
+                            OwnerId = 13,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6098),
+                            StatusId = 1,
+                            Title = "Restauration Historique",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6102)
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6107),
+                            Description = "Mise en place d'un programme de mentorat pour aider les jeunes à développer leurs compétences professionnelles et personnelles.",
+                            EndDate = new DateTime(2025, 3, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6106),
+                            ImageUrl = "project14.jpg",
+                            Objective = 15000m,
+                            OwnerId = 14,
+                            StartDate = new DateTime(2025, 1, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6104),
+                            StatusId = 1,
+                            Title = "Programme de Mentorat",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6109)
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6115),
+                            Description = "Organisation d'un festival de cinéma pour promouvoir les films indépendants et offrir une plateforme aux nouveaux réalisateurs.",
+                            EndDate = new DateTime(2025, 1, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6113),
+                            ImageUrl = "project15.jpg",
+                            Objective = 20000m,
+                            OwnerId = 15,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6112),
+                            StatusId = 1,
+                            Title = "Festival de Cinéma",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6116)
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6122),
+                            Description = "Développement d'une application mobile pour suivre et améliorer la santé et le bien-être des utilisateurs.",
+                            EndDate = new DateTime(2025, 2, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6120),
+                            ImageUrl = "project16.jpg",
+                            Objective = 30000m,
+                            OwnerId = 1,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6119),
+                            StatusId = 1,
+                            Title = "Application de Santé",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6123)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6129),
+                            Description = "Initiative de reboisement pour planter des arbres et restaurer les forêts dégradées afin de lutter contre le changement climatique.",
+                            EndDate = new DateTime(2025, 1, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6127),
+                            ImageUrl = "project17.jpg",
+                            Objective = 10000m,
+                            OwnerId = 2,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6125),
+                            StatusId = 1,
+                            Title = "Projet de Reboisement",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6130)
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6135),
+                            Description = "Construction d'un centre communautaire pour offrir des services et des activités aux résidents locaux.",
+                            EndDate = new DateTime(2025, 4, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6133),
+                            ImageUrl = "project18.jpg",
+                            Objective = 50000m,
+                            OwnerId = 3,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6132),
+                            StatusId = 1,
+                            Title = "Centre Communautaire",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6137)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6142),
+                            Description = "Financement d'un projet de recherche médicale pour développer de nouveaux traitements et médicaments.",
+                            EndDate = new DateTime(2025, 3, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6140),
+                            ImageUrl = "project19.jpg",
+                            Objective = 60000m,
+                            OwnerId = 4,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6139),
+                            StatusId = 1,
+                            Title = "Projet de Recherche Médicale",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6143)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6149),
+                            Description = "Création d'une plateforme d'éducation en ligne pour offrir des cours et des ressources éducatives accessibles à tous.",
+                            EndDate = new DateTime(2025, 2, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6147),
+                            ImageUrl = "project20.jpg",
+                            Objective = 20000m,
+                            OwnerId = 5,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6145),
+                            StatusId = 1,
+                            Title = "Éducation en Ligne",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6150)
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6155),
+                            Description = "Développement d'un système de transport urbain durable pour réduire la congestion et les émissions de CO2.",
+                            EndDate = new DateTime(2025, 3, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6154),
+                            ImageUrl = "project21.jpg",
+                            Objective = 45000m,
+                            OwnerId = 6,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6152),
+                            StatusId = 1,
+                            Title = "Projet de Mobilité Urbaine",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6157)
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6162),
+                            Description = "Soutien aux artisans locaux pour promouvoir et vendre leurs produits à travers une plateforme en ligne.",
+                            EndDate = new DateTime(2025, 2, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6160),
+                            ImageUrl = "project22.jpg",
+                            Objective = 15000m,
+                            OwnerId = 7,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6159),
+                            StatusId = 1,
+                            Title = "Artisanat Local",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6163)
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6169),
+                            Description = "Protection des écosystèmes marins et des espèces en danger par des actions de conservation et de sensibilisation.",
+                            EndDate = new DateTime(2025, 3, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6167),
+                            ImageUrl = "project23.jpg",
+                            Objective = 30000m,
+                            OwnerId = 8,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6165),
+                            StatusId = 1,
+                            Title = "Projet de Conservation Marine",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6170)
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6176),
+                            Description = "Développement de technologies agricoles innovantes pour améliorer la productivité et la durabilité des exploitations agricoles.",
+                            EndDate = new DateTime(2025, 4, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6174),
+                            ImageUrl = "project24.jpg",
+                            Objective = 25000m,
+                            OwnerId = 9,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6173),
+                            StatusId = 1,
+                            Title = "Innovation Agricole",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6177)
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6182),
+                            Description = "Mise en place de programmes de réduction des déchets et de recyclage pour promouvoir une gestion durable des ressources.",
+                            EndDate = new DateTime(2025, 2, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6181),
+                            ImageUrl = "project25.jpg",
+                            Objective = 20000m,
+                            OwnerId = 10,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6179),
+                            StatusId = 1,
+                            Title = "Projet de Réduction des Déchets",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6184)
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6189),
+                            Description = "Création d'un refuge pour animaux abandonnés et maltraités, offrant des soins et des adoptions responsables.",
+                            EndDate = new DateTime(2025, 3, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6187),
+                            ImageUrl = "project26.jpg",
+                            Objective = 30000m,
+                            OwnerId = 11,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6186),
+                            StatusId = 1,
+                            Title = "Projet de Bien-être Animal",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6190)
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6196),
+                            Description = "Organisation de concerts de musique classique pour promouvoir les jeunes talents et offrir des expériences culturelles enrichissantes.",
+                            EndDate = new DateTime(2025, 1, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6194),
+                            ImageUrl = "project27.jpg",
+                            Objective = 15000m,
+                            OwnerId = 12,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6192),
+                            StatusId = 1,
+                            Title = "Projet de Musique Classique",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6197)
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6202),
+                            Description = "Promotion de la cuisine durable et locale à travers des ateliers et des événements culinaires.",
+                            EndDate = new DateTime(2025, 2, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6201),
+                            ImageUrl = "project28.jpg",
+                            Objective = 10000m,
+                            OwnerId = 13,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6199),
+                            StatusId = 1,
+                            Title = "Projet de Cuisine Durable",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6204)
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6209),
+                            Description = "Création d'une exposition de photographies pour sensibiliser à des causes sociales et environnementales.",
+                            EndDate = new DateTime(2025, 1, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6207),
+                            ImageUrl = "project29.jpg",
+                            Objective = 12000m,
+                            OwnerId = 14,
+                            StartDate = new DateTime(2024, 11, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6206),
+                            StatusId = 1,
+                            Title = "Projet de Photographie",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6210)
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6216),
+                            Description = "Production d'une pièce de théâtre pour promouvoir les arts de la scène et offrir des spectacles de qualité.",
+                            EndDate = new DateTime(2025, 3, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6214),
+                            ImageUrl = "project30.jpg",
+                            Objective = 18000m,
+                            OwnerId = 15,
+                            StartDate = new DateTime(2024, 12, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6212),
+                            StatusId = 1,
+                            Title = "Projet de Théâtre",
+                            UpdatedAt = new DateTime(2024, 10, 9, 16, 39, 40, 7, DateTimeKind.Local).AddTicks(6217)
                         });
                 });
 
@@ -168,6 +683,708 @@ namespace Crowdy.DAL.Migrations
                         {
                             t.HasCheckConstraint("CK_ProjectThreshold_Amount", "Amount > 0");
                         });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 100m,
+                            Description = "Seuil 1 pour Smart Home",
+                            ProjectId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 200m,
+                            Description = "Seuil 2 pour Smart Home",
+                            ProjectId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = 300m,
+                            Description = "Seuil 3 pour Smart Home",
+                            ProjectId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 400m,
+                            Description = "Seuil 4 pour Smart Home",
+                            ProjectId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Amount = 500m,
+                            Description = "Seuil 5 pour Smart Home",
+                            ProjectId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Amount = 100m,
+                            Description = "Seuil 1 pour Peinture Abstraite",
+                            ProjectId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Amount = 200m,
+                            Description = "Seuil 2 pour Peinture Abstraite",
+                            ProjectId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Amount = 300m,
+                            Description = "Seuil 3 pour Peinture Abstraite",
+                            ProjectId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Amount = 400m,
+                            Description = "Seuil 4 pour Peinture Abstraite",
+                            ProjectId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Amount = 100m,
+                            Description = "Seuil 1 pour Album Rock",
+                            ProjectId = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Amount = 200m,
+                            Description = "Seuil 2 pour Album Rock",
+                            ProjectId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Amount = 300m,
+                            Description = "Seuil 3 pour Album Rock",
+                            ProjectId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Amount = 400m,
+                            Description = "Seuil 4 pour Album Rock",
+                            ProjectId = 3
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Amount = 100m,
+                            Description = "Seuil 1 pour Application Mobile",
+                            ProjectId = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Amount = 200m,
+                            Description = "Seuil 2 pour Application Mobile",
+                            ProjectId = 4
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Amount = 300m,
+                            Description = "Seuil 3 pour Application Mobile",
+                            ProjectId = 4
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Amount = 100m,
+                            Description = "Seuil 1 pour Concert Live",
+                            ProjectId = 5
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Amount = 200m,
+                            Description = "Seuil 2 pour Concert Live",
+                            ProjectId = 5
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Amount = 300m,
+                            Description = "Seuil 3 pour Concert Live",
+                            ProjectId = 5
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Amount = 400m,
+                            Description = "Seuil 4 pour Concert Live",
+                            ProjectId = 5
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Amount = 100m,
+                            Description = "Seuil 1 pour Film Documentaire",
+                            ProjectId = 6
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Amount = 200m,
+                            Description = "Seuil 2 pour Film Documentaire",
+                            ProjectId = 6
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Amount = 300m,
+                            Description = "Seuil 3 pour Film Documentaire",
+                            ProjectId = 6
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Amount = 100m,
+                            Description = "Seuil 1 pour Jeu Vidéo",
+                            ProjectId = 7
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Amount = 200m,
+                            Description = "Seuil 2 pour Jeu Vidéo",
+                            ProjectId = 7
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Amount = 300m,
+                            Description = "Seuil 3 pour Jeu Vidéo",
+                            ProjectId = 7
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Amount = 400m,
+                            Description = "Seuil 4 pour Jeu Vidéo",
+                            ProjectId = 7
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Amount = 500m,
+                            Description = "Seuil 5 pour Jeu Vidéo",
+                            ProjectId = 7
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Amount = 100m,
+                            Description = "Seuil 1 pour Livre de Cuisine",
+                            ProjectId = 8
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Amount = 200m,
+                            Description = "Seuil 2 pour Livre de Cuisine",
+                            ProjectId = 8
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Amount = 300m,
+                            Description = "Seuil 3 pour Livre de Cuisine",
+                            ProjectId = 8
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Amount = 100m,
+                            Description = "Seuil 1 pour Festival de Musique",
+                            ProjectId = 9
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Amount = 200m,
+                            Description = "Seuil 2 pour Festival de Musique",
+                            ProjectId = 9
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Amount = 300m,
+                            Description = "Seuil 3 pour Festival de Musique",
+                            ProjectId = 9
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Amount = 400m,
+                            Description = "Seuil 4 pour Festival de Musique",
+                            ProjectId = 9
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Amount = 100m,
+                            Description = "Seuil 1 pour Startup Technologique",
+                            ProjectId = 10
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Amount = 200m,
+                            Description = "Seuil 2 pour Startup Technologique",
+                            ProjectId = 10
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Amount = 300m,
+                            Description = "Seuil 3 pour Startup Technologique",
+                            ProjectId = 10
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Amount = 400m,
+                            Description = "Seuil 4 pour Startup Technologique",
+                            ProjectId = 10
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Amount = 500m,
+                            Description = "Seuil 5 pour Startup Technologique",
+                            ProjectId = 10
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Amount = 500m,
+                            Description = "Niveau 1 - Accès anticipé",
+                            ProjectId = 11
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Amount = 1000m,
+                            Description = "Niveau 2 - Accès anticipé + Contenu exclusif",
+                            ProjectId = 11
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Amount = 2000m,
+                            Description = "Niveau 3 - Accès anticipé + Contenu exclusif + Mention dans les crédits",
+                            ProjectId = 11
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Amount = 300m,
+                            Description = "Niveau 1 - Certificat de remerciement",
+                            ProjectId = 12
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Amount = 700m,
+                            Description = "Niveau 2 - Certificat de remerciement + T-shirt",
+                            ProjectId = 12
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Amount = 1500m,
+                            Description = "Niveau 3 - Certificat de remerciement + T-shirt + Visite du site",
+                            ProjectId = 12
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Amount = 400m,
+                            Description = "Niveau 1 - Carte postale du bâtiment restauré",
+                            ProjectId = 13
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Amount = 800m,
+                            Description = "Niveau 2 - Carte postale + Livre sur l'histoire du bâtiment",
+                            ProjectId = 13
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Amount = 1600m,
+                            Description = "Niveau 3 - Carte postale + Livre + Visite guidée",
+                            ProjectId = 13
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Amount = 200m,
+                            Description = "Niveau 1 - Mention sur le site web",
+                            ProjectId = 14
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Amount = 500m,
+                            Description = "Niveau 2 - Mention + T-shirt",
+                            ProjectId = 14
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Amount = 1000m,
+                            Description = "Niveau 3 - Mention + T-shirt + Invitation à un événement",
+                            ProjectId = 14
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Amount = 250m,
+                            Description = "Niveau 1 - Billet pour une projection",
+                            ProjectId = 15
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Amount = 600m,
+                            Description = "Niveau 2 - Billet + Affiche du festival",
+                            ProjectId = 15
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Amount = 1200m,
+                            Description = "Niveau 3 - Billet + Affiche + Rencontre avec les réalisateurs",
+                            ProjectId = 15
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Amount = 400m,
+                            Description = "Niveau 1 - Accès premium à l'application",
+                            ProjectId = 16
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Amount = 900m,
+                            Description = "Niveau 2 - Accès premium + Consultation avec un expert",
+                            ProjectId = 16
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Amount = 1800m,
+                            Description = "Niveau 3 - Accès premium + Consultation + Mention dans l'application",
+                            ProjectId = 16
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Amount = 100m,
+                            Description = "Niveau 1 - Certificat de plantation",
+                            ProjectId = 17
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Amount = 300m,
+                            Description = "Niveau 2 - Certificat + T-shirt",
+                            ProjectId = 17
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Amount = 700m,
+                            Description = "Niveau 3 - Certificat + T-shirt + Visite du site de plantation",
+                            ProjectId = 17
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Amount = 500m,
+                            Description = "Niveau 1 - Mention sur le mur des donateurs",
+                            ProjectId = 18
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Amount = 1000m,
+                            Description = "Niveau 2 - Mention + T-shirt",
+                            ProjectId = 18
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Amount = 2000m,
+                            Description = "Niveau 3 - Mention + T-shirt + Invitation à l'inauguration",
+                            ProjectId = 18
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Amount = 600m,
+                            Description = "Niveau 1 - Mention dans le rapport de recherche",
+                            ProjectId = 19
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Amount = 1200m,
+                            Description = "Niveau 2 - Mention + T-shirt",
+                            ProjectId = 19
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Amount = 2500m,
+                            Description = "Niveau 3 - Mention + T-shirt + Invitation à une conférence",
+                            ProjectId = 19
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Amount = 300m,
+                            Description = "Niveau 1 - Accès à un cours exclusif",
+                            ProjectId = 20
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Amount = 700m,
+                            Description = "Niveau 2 - Accès à un cours + T-shirt",
+                            ProjectId = 20
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Amount = 1500m,
+                            Description = "Niveau 3 - Accès à un cours + T-shirt + Mention sur la plateforme",
+                            ProjectId = 20
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Amount = 400m,
+                            Description = "Niveau 1 - Mention sur le site web",
+                            ProjectId = 21
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Amount = 900m,
+                            Description = "Niveau 2 - Mention + T-shirt",
+                            ProjectId = 21
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Amount = 1800m,
+                            Description = "Niveau 3 - Mention + T-shirt + Invitation à un événement",
+                            ProjectId = 21
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Amount = 200m,
+                            Description = "Niveau 1 - Mention sur le site web",
+                            ProjectId = 22
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Amount = 500m,
+                            Description = "Niveau 2 - Mention + T-shirt",
+                            ProjectId = 22
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Amount = 1000m,
+                            Description = "Niveau 3 - Mention + T-shirt + Invitation à un événement",
+                            ProjectId = 22
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Amount = 300m,
+                            Description = "Niveau 1 - Certificat de remerciement",
+                            ProjectId = 23
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Amount = 700m,
+                            Description = "Niveau 2 - Certificat + T-shirt",
+                            ProjectId = 23
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Amount = 1500m,
+                            Description = "Niveau 3 - Certificat + T-shirt + Visite du site",
+                            ProjectId = 23
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Amount = 400m,
+                            Description = "Niveau 1 - Carte postale du projet",
+                            ProjectId = 24
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Amount = 800m,
+                            Description = "Niveau 2 - Carte postale + Livre sur le projet",
+                            ProjectId = 24
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Amount = 1600m,
+                            Description = "Niveau 3 - Carte postale + Livre + Visite guidée",
+                            ProjectId = 24
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Amount = 250m,
+                            Description = "Niveau 1 - Billet pour un atelier",
+                            ProjectId = 25
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Amount = 600m,
+                            Description = "Niveau 2 - Billet + T-shirt",
+                            ProjectId = 25
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Amount = 1200m,
+                            Description = "Niveau 3 - Billet + T-shirt + Mention sur le site web",
+                            ProjectId = 25
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Amount = 300m,
+                            Description = "Niveau 1 - Certificat de remerciement",
+                            ProjectId = 26
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Amount = 700m,
+                            Description = "Niveau 2 - Certificat + T-shirt",
+                            ProjectId = 26
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Amount = 1500m,
+                            Description = "Niveau 3 - Certificat + T-shirt + Visite du refuge",
+                            ProjectId = 26
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Amount = 200m,
+                            Description = "Niveau 1 - Mention sur le programme",
+                            ProjectId = 27
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Amount = 500m,
+                            Description = "Niveau 2 - Mention + T-shirt",
+                            ProjectId = 27
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Amount = 1000m,
+                            Description = "Niveau 3 - Mention + T-shirt + Invitation à un concert",
+                            ProjectId = 27
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Amount = 100m,
+                            Description = "Niveau 1 - Mention sur le site web",
+                            ProjectId = 28
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Amount = 300m,
+                            Description = "Niveau 2 - Mention + T-shirt",
+                            ProjectId = 28
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Amount = 700m,
+                            Description = "Niveau 3 - Mention + T-shirt + Invitation à un atelier",
+                            ProjectId = 28
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Amount = 150m,
+                            Description = "Niveau 1 - Mention sur l'exposition",
+                            ProjectId = 29
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Amount = 400m,
+                            Description = "Niveau 2 - Mention + T-shirt",
+                            ProjectId = 29
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Amount = 900m,
+                            Description = "Niveau 3 - Mention + T-shirt + Invitation à l'exposition",
+                            ProjectId = 29
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Amount = 250m,
+                            Description = "Niveau 1 - Billet pour une représentation",
+                            ProjectId = 30
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Amount = 600m,
+                            Description = "Niveau 2 - Billet + Affiche de la pièce",
+                            ProjectId = 30
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Amount = 1200m,
+                            Description = "Niveau 3 - Billet + Affiche + Rencontre avec les acteurs",
+                            ProjectId = 30
+                        });
                 });
 
             modelBuilder.Entity("Crowdy.DAL.Entities.Role", b =>
@@ -227,22 +1444,22 @@ namespace Crowdy.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "To be validated"
+                            Name = "A valider"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Validated"
+                            Name = "Validé"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Rejected"
+                            Name = "Rejeté"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Closed"
+                            Name = "Terminé"
                         });
                 });
 
@@ -286,6 +1503,128 @@ namespace Crowdy.DAL.Migrations
                         {
                             t.HasCheckConstraint("CHK_User_DateOfBirth", "DateOfBirth <= DATEADD(year, -18, GETDATE())");
                         });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "alice@example.com",
+                            Password = "password1",
+                            Username = "Alice"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateOfBirth = new DateTime(1991, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "bob@example.com",
+                            Password = "password2",
+                            Username = "Bob"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DateOfBirth = new DateTime(1992, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "charlie@example.com",
+                            Password = "password3",
+                            Username = "Charlie"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DateOfBirth = new DateTime(1993, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "diana@example.com",
+                            Password = "password4",
+                            Username = "Diana"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DateOfBirth = new DateTime(1994, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "eve@example.com",
+                            Password = "password5",
+                            Username = "Eve"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DateOfBirth = new DateTime(1990, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "frank@example.com",
+                            Password = "password6",
+                            Username = "Frank"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DateOfBirth = new DateTime(1991, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "grace@example.com",
+                            Password = "password7",
+                            Username = "Grace"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DateOfBirth = new DateTime(1992, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "hank@example.com",
+                            Password = "password8",
+                            Username = "Hank"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DateOfBirth = new DateTime(1993, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "ivy@example.com",
+                            Password = "password9",
+                            Username = "Ivy"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DateOfBirth = new DateTime(1994, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "jack@example.com",
+                            Password = "password10",
+                            Username = "Jack"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DateOfBirth = new DateTime(1990, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "karen@example.com",
+                            Password = "password11",
+                            Username = "Karen"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DateOfBirth = new DateTime(1991, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "leo@example.com",
+                            Password = "password12",
+                            Username = "Leo"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DateOfBirth = new DateTime(1992, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "mona@example.com",
+                            Password = "password13",
+                            Username = "Mona"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DateOfBirth = new DateTime(1993, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "nina@example.com",
+                            Password = "password14",
+                            Username = "Nina"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DateOfBirth = new DateTime(1994, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "oscar@example.com",
+                            Password = "password15",
+                            Username = "Oscar"
+                        });
                 });
 
             modelBuilder.Entity("MM_project_category", b =>
@@ -301,6 +1640,338 @@ namespace Crowdy.DAL.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("MM_project_category");
+
+                    b.HasData(
+                        new
+                        {
+                            ProjectId = 1,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProjectId = 1,
+                            CategoryId = 16
+                        },
+                        new
+                        {
+                            ProjectId = 2,
+                            CategoryId = 2
+                        },
+                        new
+                        {
+                            ProjectId = 2,
+                            CategoryId = 13
+                        },
+                        new
+                        {
+                            ProjectId = 3,
+                            CategoryId = 12
+                        },
+                        new
+                        {
+                            ProjectId = 4,
+                            CategoryId = 16
+                        },
+                        new
+                        {
+                            ProjectId = 4,
+                            CategoryId = 7
+                        },
+                        new
+                        {
+                            ProjectId = 5,
+                            CategoryId = 12
+                        },
+                        new
+                        {
+                            ProjectId = 6,
+                            CategoryId = 6
+                        },
+                        new
+                        {
+                            ProjectId = 6,
+                            CategoryId = 8
+                        },
+                        new
+                        {
+                            ProjectId = 6,
+                            CategoryId = 15
+                        },
+                        new
+                        {
+                            ProjectId = 7,
+                            CategoryId = 16
+                        },
+                        new
+                        {
+                            ProjectId = 8,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProjectId = 8,
+                            CategoryId = 10
+                        },
+                        new
+                        {
+                            ProjectId = 9,
+                            CategoryId = 12
+                        },
+                        new
+                        {
+                            ProjectId = 9,
+                            CategoryId = 15
+                        },
+                        new
+                        {
+                            ProjectId = 10,
+                            CategoryId = 16
+                        },
+                        new
+                        {
+                            ProjectId = 10,
+                            CategoryId = 14
+                        },
+                        new
+                        {
+                            ProjectId = 10,
+                            CategoryId = 17
+                        },
+                        new
+                        {
+                            ProjectId = 11,
+                            CategoryId = 3
+                        },
+                        new
+                        {
+                            ProjectId = 11,
+                            CategoryId = 7
+                        },
+                        new
+                        {
+                            ProjectId = 12,
+                            CategoryId = 5
+                        },
+                        new
+                        {
+                            ProjectId = 13,
+                            CategoryId = 2
+                        },
+                        new
+                        {
+                            ProjectId = 13,
+                            CategoryId = 8
+                        },
+                        new
+                        {
+                            ProjectId = 13,
+                            CategoryId = 11
+                        },
+                        new
+                        {
+                            ProjectId = 14,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProjectId = 14,
+                            CategoryId = 4
+                        },
+                        new
+                        {
+                            ProjectId = 14,
+                            CategoryId = 9
+                        },
+                        new
+                        {
+                            ProjectId = 14,
+                            CategoryId = 12
+                        },
+                        new
+                        {
+                            ProjectId = 15,
+                            CategoryId = 6
+                        },
+                        new
+                        {
+                            ProjectId = 15,
+                            CategoryId = 10
+                        },
+                        new
+                        {
+                            ProjectId = 16,
+                            CategoryId = 3
+                        },
+                        new
+                        {
+                            ProjectId = 17,
+                            CategoryId = 2
+                        },
+                        new
+                        {
+                            ProjectId = 17,
+                            CategoryId = 5
+                        },
+                        new
+                        {
+                            ProjectId = 17,
+                            CategoryId = 8
+                        },
+                        new
+                        {
+                            ProjectId = 18,
+                            CategoryId = 7
+                        },
+                        new
+                        {
+                            ProjectId = 18,
+                            CategoryId = 12
+                        },
+                        new
+                        {
+                            ProjectId = 19,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProjectId = 19,
+                            CategoryId = 6
+                        },
+                        new
+                        {
+                            ProjectId = 19,
+                            CategoryId = 9
+                        },
+                        new
+                        {
+                            ProjectId = 19,
+                            CategoryId = 11
+                        },
+                        new
+                        {
+                            ProjectId = 20,
+                            CategoryId = 4
+                        },
+                        new
+                        {
+                            ProjectId = 21,
+                            CategoryId = 8
+                        },
+                        new
+                        {
+                            ProjectId = 21,
+                            CategoryId = 10
+                        },
+                        new
+                        {
+                            ProjectId = 22,
+                            CategoryId = 3
+                        },
+                        new
+                        {
+                            ProjectId = 22,
+                            CategoryId = 11
+                        },
+                        new
+                        {
+                            ProjectId = 23,
+                            CategoryId = 2
+                        },
+                        new
+                        {
+                            ProjectId = 23,
+                            CategoryId = 5
+                        },
+                        new
+                        {
+                            ProjectId = 23,
+                            CategoryId = 8
+                        },
+                        new
+                        {
+                            ProjectId = 23,
+                            CategoryId = 12
+                        },
+                        new
+                        {
+                            ProjectId = 24,
+                            CategoryId = 7
+                        },
+                        new
+                        {
+                            ProjectId = 25,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProjectId = 25,
+                            CategoryId = 6
+                        },
+                        new
+                        {
+                            ProjectId = 25,
+                            CategoryId = 9
+                        },
+                        new
+                        {
+                            ProjectId = 26,
+                            CategoryId = 4
+                        },
+                        new
+                        {
+                            ProjectId = 26,
+                            CategoryId = 10
+                        },
+                        new
+                        {
+                            ProjectId = 27,
+                            CategoryId = 8
+                        },
+                        new
+                        {
+                            ProjectId = 28,
+                            CategoryId = 3
+                        },
+                        new
+                        {
+                            ProjectId = 28,
+                            CategoryId = 11
+                        },
+                        new
+                        {
+                            ProjectId = 28,
+                            CategoryId = 12
+                        },
+                        new
+                        {
+                            ProjectId = 29,
+                            CategoryId = 2
+                        },
+                        new
+                        {
+                            ProjectId = 29,
+                            CategoryId = 5
+                        },
+                        new
+                        {
+                            ProjectId = 30,
+                            CategoryId = 7
+                        },
+                        new
+                        {
+                            ProjectId = 30,
+                            CategoryId = 12
+                        },
+                        new
+                        {
+                            ProjectId = 30,
+                            CategoryId = 10
+                        },
+                        new
+                        {
+                            ProjectId = 30,
+                            CategoryId = 9
+                        });
                 });
 
             modelBuilder.Entity("MM_user_role", b =>

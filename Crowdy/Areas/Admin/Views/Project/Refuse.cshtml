@@ -1,0 +1,24 @@
+﻿@model RefuseFormView
+
+<div class="container text-center">
+    <div class="heading mb-5">
+        <h1>Etes-vous sûr de vouloir refuser le projet ?</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <form asp-area="Admin" asp-controller="Project" asp-action="Refuse">
+                <div class="form-floating mb-5">
+                    <textarea asp-for="Comment" class="form-control" placeholder="Expliquer la raison du refus" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <label asp-for="Comment">Raison du refus</label>
+                    <span asp-validation-for="Comment" class="text-danger"></span>
+                </div>
+                <input asp-for="ProjectId" class="form-control" hidden="true" />
+                
+                <div class="form-group mt-3">
+                    <a class="btn btn-primary" asp-area="Admin" asp-controller="Project" asp-action="Details" asp-route-id="@Model.ProjectId">Annuler</a>
+                    <input type="submit" value="Refuser" class="btn btn-danger" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

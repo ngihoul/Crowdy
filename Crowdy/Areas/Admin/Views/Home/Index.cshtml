@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ProjectViewModel>
+
+<div class="container">
+    <h1>Panneau d'administration</h1>
+    @if(Model != null)
+    {
+        <h2>Les derniers projets à valider</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Objective)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDate)
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => project.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => project.Objective)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => project.StartDate)
+                        </td>
+                        <td>
+                            <a asp-controller="Project" asp-action="Details" asp-route-id="@project.Id" class="btn btn-primary">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-area="Admin" asp-controller="Project" asp-action="ToBeValidated">Voir tous les projets à valider (@ViewBag.nbProjectsToValidate)</a>
+    }
+    
+</div>
+

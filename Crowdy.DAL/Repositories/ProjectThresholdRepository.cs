@@ -3,6 +3,7 @@
 using Crowdy.DAL.Database;
 using Crowdy.DAL.Entities;
 using Crowdy.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Crowdy.DAL.Repositories
 {
@@ -13,6 +14,21 @@ namespace Crowdy.DAL.Repositories
         public ProjectThresholdRepository(ApplicationContext context)
         {
             _context = context;
+        }
+
+        public List<ProjectThreshold> GetAll()
+        {
+            return _context.ProjectThresholds.ToList();
+        }
+
+        public ProjectThreshold? GetOneById(int key)
+        {
+            return _context.ProjectThresholds.Include(pt => pt.Project).FirstOrDefault(pt => pt.Id == key);
+        }
+
+        public List<ProjectThreshold> GetAllByProject(int id)
+        {
+            return _context.ProjectThresholds.Include(pt => pt.Project).Where(pt => pt.Project.Id == id).ToList();
         }
 
         public ProjectThreshold Create(ProjectThreshold entity)
@@ -29,16 +45,6 @@ namespace Crowdy.DAL.Repositories
             _context.SaveChanges();
 
             return true;
-        }
-
-        public List<ProjectThreshold> GetAll()
-        {
-            return _context.ProjectThresholds.ToList();
-        }
-
-        public ProjectThreshold? GetOneById(int key)
-        {
-            return _context.ProjectThresholds.FirstOrDefault(u => u.Id == key);
         }
 
         public ProjectThreshold Update(ProjectThreshold entity)

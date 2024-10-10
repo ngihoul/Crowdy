@@ -1,3 +1,5 @@
+using Crowdy.BLL.Services.Interfaces;
+using Crowdy.DAL.Entities;
 using Crowdy.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,16 +8,17 @@ namespace Crowdy.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProjectService _projectService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProjectService projectService)
         {
-            _logger = logger;
+            _projectService = projectService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<Project> projects = _projectService.GetLastProjectsValidated(4);
+            return View(projects);
         }
 
         public IActionResult Privacy()

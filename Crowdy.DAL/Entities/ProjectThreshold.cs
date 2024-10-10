@@ -2,9 +2,9 @@
 {
     public class ProjectThreshold
     {
-        public required int Id { get; set; }
-        public required Project Project { get; set; }
-        public required decimal Amount { get; set; }
-        public required string Description { get; set; }
+        public int Id { get; set; }
+        public Project Project { get; set; }
+        public decimal Amount { get; set; }
+        public string Description { get; set; }
     }
 }

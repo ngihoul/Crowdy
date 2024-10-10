@@ -1,0 +1,23 @@
+﻿@using Crowdy.DAL.Entities
+@model ProjectThreshold
+
+@{
+    ViewData["Title"] = $"Contribuer à {Model.Project.Title}";
+}
+
+<h1 class="mb-3">@ViewData["Title"]</h1>
+
+<partial name="_Alert" />
+
+<div>
+    <h2>Contribuer à hauteur de @string.Format("{0:C2}", Model.Amount)</h2>
+    <h3>Votre récompense</h3>
+    <p>@Model.Description</p>
+
+    <form asp-controller="Project" asp-action="Contribute" method="post">
+        <input type="hidden" name="projectId" value="@Model.Project.Id" />
+        <input type="hidden" name="thresholdId" value="@Model.Id" />
+        <input type="hidden" name="amount" value="@Model.Amount" />
+        <button type="submit" class="btn btn-primary">Valider</button>
+    </form>
+</div>

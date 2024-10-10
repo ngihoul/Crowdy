@@ -6,21 +6,21 @@ namespace Crowdy.BLL.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserRepository _projectThresholdRepository;
 
         public UserService(IUserRepository userRepository)
         {
-            _userRepository = userRepository;
+            _projectThresholdRepository = userRepository;
         }
 
         public List<User> GetAll()
         {
-            return _userRepository.GetAll().ToList();
+            return _projectThresholdRepository.GetAll().ToList();
         }
 
         public User GetOneById(int id)
         {
-            User? user = _userRepository.GetOneById(id);
+            User? user = _projectThresholdRepository.GetOneById(id);
 
             if (user == null)
             {
@@ -37,7 +37,7 @@ namespace Crowdy.BLL.Services
                 throw new ArgumentNullException(nameof(email));
             }
 
-            User? user = _userRepository.GetOneByEmail(email);
+            User? user = _projectThresholdRepository.GetOneByEmail(email);
 
             if (user == null)
             {
@@ -54,12 +54,12 @@ namespace Crowdy.BLL.Services
                 throw new ArgumentNullException(nameof(user));
             }
 
-            if (_userRepository.GetOneByEmail(user.Email) != null || _userRepository.GetOneByEmail(user.Username) != null)
+            if (_projectThresholdRepository.GetOneByEmail(user.Email) != null || _projectThresholdRepository.GetOneByEmail(user.Username) != null)
             {
                 throw new Exception("L'utilisateur existe déjà.");
             }
 
-            if (_userRepository.Create(user) == null)
+            if (_projectThresholdRepository.Create(user) == null)
             {
                 throw new Exception("Erreur lors de l'enregistrement.");
             }

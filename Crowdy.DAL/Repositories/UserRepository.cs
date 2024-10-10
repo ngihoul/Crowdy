@@ -1,6 +1,7 @@
 ﻿using Crowdy.DAL.Database;
 using Crowdy.DAL.Entities;
 using Crowdy.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Crowdy.DAL.Repositories
 {
@@ -11,6 +12,22 @@ namespace Crowdy.DAL.Repositories
         public UserRepository(ApplicationContext context)
         {
             _context = context;
+        }
+
+        public List<User> GetAll()
+        {
+            return _context.Users.ToList();
+        }
+
+        public User? GetOneById(int key)
+        {
+            return _context.Users.Include(u => u.Roles)
+                                 .FirstOrDefault(u => u.Id == key);
+        }
+
+        public User? GetOneByEmail(string email)
+        {
+            return _context.Users.FirstOrDefault(u => u.Email == email);
         }
 
         public User Create(User entity)
@@ -27,21 +44,6 @@ namespace Crowdy.DAL.Repositories
             _context.SaveChanges();
 
             return true;
-        }
-
-        public List<User> GetAll()
-        {
-            return _context.Users.ToList();
-        }
-
-        public User? GetOneById(int key)
-        {
-            return _context.Users.FirstOrDefault(u => u.Id == key);
-        }
-
-        public User? GetOneByEmail(string email)
-        {
-            return _context.Users.FirstOrDefault(u => u.Email == email);
         }
 
         public User Update(User entity)

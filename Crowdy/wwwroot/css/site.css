@@ -1,5 +1,17 @@
+:root {
+    --bg-light: #F4F3EE;
+    --bg-dark: #8f754f;
+    --color-primary: #7B0D1E;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+}
+
 html {
   font-size: 14px;
+  overflow-x: hidden;
 }
 
 @media (min-width: 768px) {
@@ -18,9 +30,92 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: var(--bg-light);
 }
 
+main {
+    
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        /*color: var(--color-primary);*/
+        color: inherit;
+    }
+}
+
+/* Register & Create project */
 .preview-img {
     max-height: 350px;
+}
+
+/* Home */
+.hero-anonymous, .hero-connected {
+    margin: -16px;
+    padding: 5rem;
+
+    .container {
+        min-height: 50vh;
+    }
+        
+    img {
+        position: relative;
+        width: 45%;
+        transform: rotate(5deg);
+    }
+    
+    .hero-text {
+        padding-left: 5rem;
+        padding-right: 5rem;
+        width: 50%;
+    }
+
+    p {
+        font-size: 1.4rem;
+    }
+}
+
+.hero-connected {
+}
+
+/* Project Card */
+.card {
+    min-height: 496px;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+    .card-img-top {
+        height: 190px;
+        object-fit: cover;
+    }
+
+    .card-text {
+        height: 96px;
+    }
+
+    .categories {
+        padding: 1rem;
+    }
+}
+
+.details-hero {
+    min-height: 60vh;
+
+    img {
+            transform: rotate(-1deg);
+            width: 45%;
+        }
+}
+
+.last-projects {
+    padding: 10rem 0;
+
+    h2 {
+           padding-bottom: 2.5rem;
+       }
 }

@@ -7,16 +7,10 @@ namespace Crowdy.BLL.Services
 {
     public class FileService
     {
-        private const string DEFAULT_AVATAR = "default.jpg";
         public string SaveFile(string path, IFormFile file)
         {
-            if(file == null)
-            {
-                return DEFAULT_AVATAR;
-            }
-
             string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-            string filePath = Path.Combine(path + @"\img\avatars");
+            string filePath = Path.Combine(path);
 
             using (var fileStream = new FileStream(Path.Combine(filePath, fileName), FileMode.Create))
             {

@@ -1,0 +1,105 @@
+﻿@using Crowdy.DAL.Entities
+@model ProjectFormView
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <div class="alert-heading text-center">
+        <h1 class="mb-3">Décrivez-nous votre projet</h1>
+    </div>
+
+    <partial name="_Alert" />
+
+    <div class="row justify-content-center align-items-center">
+        <div class="preview-avatar col-md-5">
+            <img class="preview-img" src="" />
+        </div>
+
+        <div class="col-md-5">
+            <form asp-controller="Project" asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mt-3">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="Objective" class="control-label"></label>
+                    <input asp-for="Objective" class="form-control" />
+                    <span asp-validation-for="Objective" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="ImageUrl" class="control-label"></label>
+                    <input type="file" name="file" class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="EndDate" class="control-label"></label>
+                    <input asp-for="EndDate" class="form-control" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="Categories" class="control-label"></label>
+                    <select class="category-select form-select" aria-label="Default select example">
+                        <option selected>Choisissez au moins une catégorie</option>
+                        @foreach (var category in ViewBag.Categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                    <button id="category-btn" type="button" class="btn btn-primary">Ajouter</button>
+                </div>
+
+                <div class="selected-categories-container mt-3">
+                </div>
+
+                <input id="hidden-categories" type="hidden" asp-for="Categories" id="selectedCategories" />
+
+                <div id="thresholds">
+                    @for (int i = 0; i < Model.ProjectThresholds.Count; i++)
+                    {
+                        <div class="threshold form-group">
+                            <label asp-for="ProjectThresholds[i].Amount" class="control-label">Montant</label>
+                            <input asp-for="ProjectThresholds[i].Amount" class="form-control" />
+                            <span asp-validation-for="ProjectThresholds[i].Amount"></span>
+
+                            <label asp-for="ProjectThresholds[i].Description" class="form-label">Description</label>
+                            <input asp-for="ProjectThresholds[i].Description" class="form-control" />
+                            <span asp-validation-for="ProjectThresholds[i].Description"></span>
+                        </div>
+                    }
+                </div>
+
+                <button id="threshold-btn" type="button" class="btn btn-primary">Ajouter un palier</button>
+
+                <div class="form-group mt-3">
+                    <input type="submit" value="Créer" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <a asp-action="Index">Revenir à la liste des projets</a>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/projectForm.js"></script>
+}

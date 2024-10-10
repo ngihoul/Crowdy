@@ -6,11 +6,11 @@ namespace Crowdy.DAL.Entities
     {
         #region
         public int Id { get; set; }
-        public required string Username { get; set; }
-        public required string Email { get; set; }
-        public required string Password { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
         public string? Avatar { get; set; } 
-        public required DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public List<Role>? Roles { get; set; } = new List<Role>();
         public List<Project>? OwnedProjects { get; set; } = new List<Project>();
         #endregion
@@ -40,8 +40,6 @@ namespace Crowdy.DAL.Entities
             Roles = roles;
             OwnedProjects = ownedProjects;
         }
-
-
         #endregion
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Crowdy.DAL.Database;
 using Crowdy.DAL.Entities;
 using Crowdy.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Crowdy.DAL.Repositories
 {
@@ -36,7 +37,12 @@ namespace Crowdy.DAL.Repositories
 
         public Status? GetOneById(int key)
         {
-            return _context.Statuses.FirstOrDefault(u => u.Id == key);
+            return _context.Statuses.FirstOrDefault(s => s.Id == key);
+        }
+
+        public Status? GetOneByName(string name)
+        {
+            return _context.Statuses.FirstOrDefault(s => s.Name == name);
         }
 
         public Status Update(Status entity)

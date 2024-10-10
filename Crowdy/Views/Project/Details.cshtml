@@ -1,0 +1,100 @@
+﻿@using Crowdy.BLL.Services
+@using Crowdy.BLL.Services.Interfaces
+@using Crowdy.DAL.Entities
+@model Crowdy.DAL.Entities.Project
+@inject AuthService authService
+@inject IProjectContributionService contributionService
+
+@{
+    ViewData["Title"] = "Détails ";
+}
+
+<div class="container">
+    <div>
+        <a asp-action="Index">Retourner à la liste</a>
+    </div>
+
+    <partial name="_Alert" />
+
+    <div class="details-content">
+        <div class="details-hero d-flex flex-wrap align-items-center">
+            <img class="w-50 p-5" src="/img/thumbnails/@Model.ImageUrl" alt="@Model.Title" />
+
+            <div class="textab-content w-50 p-5">
+                <div class="heading mb-3">
+                    <h1>
+                        @Model.Title
+                        @{
+                            switch (Model.Status.Id)
+                            {
+                                case 1:
+                                    <span class="badge rounded-pill bg-warning">@Model.Status.Name</span>
+                                    break;
+                                case 2:
+                                    <span class="badge rounded-pill bg-success">@Model.Status.Name</span>
+                                    break;
+                                case 3:
+                                    <span class="badge rounded-pill bg-dark">@Model.Status.Name</span>
+                                    break;
+                                case 4:
+                                    <span class="badge rounded-pill bg-danger">@Model.Status.Name</span>
+                                    break;
+                            }
+                        }
+                    </h1>
+                </div>
+                @if (Model.Status.Name == Status.REJECTED && Model.Comment != null)
+                    {
+                    <div class="alert alert-danger mb-3">
+                        @Model.Comment
+                    </div>
+                }
+                <div class="description pb-3">
+                    <p class="h4">@Model.Description</p>
+                </div>
+
+                <div class="objective pt-3">
+                    @{
+                        decimal? progress = contributionService.CalculateProgression(Model.ProjectContributions, Model.Objective);
+                    }
+                    <div class="progress mt-3 mb-3" role="progressbar" aria-label="" aria-valuenow="@progress" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar" style="width: @progress%">@progress%</div>
+                    </div>
+                    <p class="h5">@string.Format("{0:C2}", contributionService.CalculateTotalContribution(Model.ProjectContributions)) / @string.Format("{0:C2}", Model.Objective)</p>
+                </div>
+
+                <div class="period pt-3">
+                    <p class="h5">Du @Model.StartDate.Date.ToString("dd/MMM/yyyy") au @Model.EndDate.Date.ToString("dd/MMM/yyyy")</p>
+                </div>
+
+                <div class="creator pt-3">
+                    <p class="h5">Créateur : @Model.Owner.Username</p>
+                </div>
+
+                @if (authService.IsAdmin() && Model.Status.Name == Status.TO_BE_VALIDATED)
+                {
+                    <div class="admin-actions d-flex pt-5">
+                        <a class="btn btn-lg btn-primary me-2" asp-area="Admin" asp-controller="Project" asp-action="Validate" asp-route-id="@Model.Id">Valider</a>
+                            <a class="btn btn-lg btn-danger me-2" asp-area="Admin" asp-controller="Project" asp-action="Refuse" asp-route-id="@Model.Id">Refuser</a>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="thresholds text-center w-100">
+            <h2 class="mb-5">Récompenses</h2>
+            @foreach (var threshold in Model.ProjectThresholds)
+            {
+                <div class="threshold-container pb-3 pt-3 d-flex justify-content-around align-items-center border-bottom">
+                    <h3>@string.Format("{0:C2}", threshold.Amount)</h3>
+                    <p>@threshold.Description</p>
+
+                    @if (Model.Status.Name == Status.VALIDATED && authService.GetUser() != Model.Owner)
+                    {
+                        <a class="btn btn-outline-primary" asp-asp-controller="Project" asp-action="Contribute" asp-route-id="@threshold.Id">Contribuer</a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
