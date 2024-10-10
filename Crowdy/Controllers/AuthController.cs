@@ -39,17 +39,25 @@ namespace Crowdy.Controllers
                 return View(model);
             }
 
-            User user = _userService.GetOneByEmail(model.Email);
-            if (_authService.VerifyPassword(model.Password, user.Password))
+            try
             {
-                _authService.InitSession(user);
+                User user = _userService.GetOneByEmail(model.Email);
+                if (_authService.VerifyPassword(model.Password, user.Password))
+                {
+                    _authService.InitSession(user);
 
-                TempData["Success"] = "Connecté avec succès.";
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                    TempData["Success"] = "Connecté avec succès.";
+                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                } else
+                {
+                    ViewBag.Error = "le nom d'utilisateur et le mot de passe sont incorrects.";
+                    return View(model);
+                }
+            }catch(Exception e)
+            {
+                ViewBag.Error = $"Une erreur est survenue : {e.Message}";
+                return View(model);
             }
-
-            ViewBag.Error = "le nom d'utilisateur et le mot de passe sont incorrects.";
-            return View(model);
         }
 
         [HttpGet]
