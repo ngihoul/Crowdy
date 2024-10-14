@@ -13,6 +13,7 @@ namespace Crowdy.DAL.Entities
         public DateTime DateOfBirth { get; set; }
         public List<Role>? Roles { get; set; } = new List<Role>();
         public List<Project>? OwnedProjects { get; set; } = new List<Project>();
+        /*public List<ProjectContribution>? Contributions { get; set; } = new List<ProjectContribution>();*/
         #endregion
 
         #region Constructors

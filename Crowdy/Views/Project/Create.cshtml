@@ -11,14 +11,12 @@
     </div>
 
     <partial name="_Alert" />
-
-    <div class="row justify-content-center align-items-center">
-        <div class="preview-avatar col-md-5">
-            <img class="preview-img" src="" />
-        </div>
-
-        <div class="col-md-5">
-            <form asp-controller="Project" asp-action="Create" enctype="multipart/form-data">
+    <form asp-controller="Project" asp-action="Create" enctype="multipart/form-data">
+        <div class="project-form row justify-content-center align-items-center">
+            <div class="preview-container d-flex justify-content-center col-md-12 col-lg-6">
+                <img class="preview-img" src="" />
+            </div>
+            <div class="col-md-12 col-lg-6">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group mt-3">
                     <label asp-for="Title" class="control-label"></label>
@@ -37,7 +35,7 @@
                 </div>
                 <div class="form-group mt-3">
                     <label asp-for="ImageUrl" class="control-label"></label>
-                    <input type="file" name="file" class="form-control" />
+                    <input type="file" name="file" class="form-control image" />
                     <span asp-validation-for="ImageUrl" class="text-danger"></span>
                 </div>
                 <div class="form-group mt-3">
@@ -50,46 +48,49 @@
                     <input asp-for="EndDate" class="form-control" />
                     <span asp-validation-for="EndDate" class="text-danger"></span>
                 </div>
-                <div class="form-group mt-3">
+                <div class="form-group mt-3 select-group">
                     <label asp-for="Categories" class="control-label"></label>
-                    <select class="category-select form-select" aria-label="Default select example">
-                        <option selected>Choisissez au moins une catégorie</option>
-                        @foreach (var category in ViewBag.Categories)
-                        {
-                            <option value="@category.Id">@category.Name</option>
-                        }
-                    </select>
-                    <button id="category-btn" type="button" class="btn btn-primary">Ajouter</button>
+                    <div class="d-flex justify-content-center align-items-center select-container">
+                        <select class="category-select form-select" aria-label="Default select example">
+                            <option value="0" selected>Choisissez au moins une catégorie</option>
+                            @foreach (var category in ViewBag.Categories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </select>
+                        <button id="category-btn" type="button" class="btn btn-primary ms-2">Ajouter</button>
+                    </div>
+                    <input id="hidden-categories" type="hidden" asp-for="Categories" id="selectedCategories" />
                 </div>
-
-                <div class="selected-categories-container mt-3">
-                </div>
-
-                <input id="hidden-categories" type="hidden" asp-for="Categories" id="selectedCategories" />
-
+            </div>
+            <div class="col-sm-12 col-lg-12">
                 <div id="thresholds">
+                    <h3 class="mt-3 mb-2">Les récompenses</h3>
                     @for (int i = 0; i < Model.ProjectThresholds.Count; i++)
                     {
-                        <div class="threshold form-group">
-                            <label asp-for="ProjectThresholds[i].Amount" class="control-label">Montant</label>
-                            <input asp-for="ProjectThresholds[i].Amount" class="form-control" />
-                            <span asp-validation-for="ProjectThresholds[i].Amount"></span>
-
-                            <label asp-for="ProjectThresholds[i].Description" class="form-label">Description</label>
-                            <input asp-for="ProjectThresholds[i].Description" class="form-control" />
-                            <span asp-validation-for="ProjectThresholds[i].Description"></span>
-                        </div>
+                            <div class="threshold form-group row d-flex align-items-center">
+                                <div class="col-sm-12 col-lg-2">
+                                    <label asp-for="ProjectThresholds[i].Amount" class="form-label">Montant</label>
+                                    <input asp-for="ProjectThresholds[i].Amount" class="form-control" />
+                                    <span asp-validation-for="ProjectThresholds[i].Amount"></span>
+                                </div>
+                                <div class="col-sm-12 col-lg-10">
+                                    <label asp-for="ProjectThresholds[i].Description" class="form-label">Description</label>
+                                    <input asp-for="ProjectThresholds[i].Description" class="form-control" />
+                                    <span asp-validation-for="ProjectThresholds[i].Description"></span>
+                                </div>
+                            </div>
                     }
                 </div>
-
-                <button id="threshold-btn" type="button" class="btn btn-primary">Ajouter un palier</button>
-
-                <div class="form-group mt-3">
-                    <input type="submit" value="Créer" class="btn btn-primary" />
+                <div class="form-group">
+                    <button id="threshold-btn" type="button" class="btn btn-primary mt-3 d-block">Ajouter une récompense</button>
                 </div>
-            </form>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+            </div>
         </div>
-    </div>
+    </form>
 
     <div class="mt-5">
         <a asp-action="Index">Revenir à la liste des projets</a>
@@ -102,4 +103,5 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script src="~/js/projectForm.js"></script>
+    <script src="~/js/previewImage.js"></script>
 }

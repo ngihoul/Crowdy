@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="period pt-3">
-                    <p class="h5">Du @Model.StartDate.Date.ToString("dd/MMM/yyyy") au @Model.EndDate.Date.ToString("dd/MMM/yyyy")</p>
+                    <p class="h5">Du @Model.StartDate.Date.ToString("dd/MM/yyyy") au @Model.EndDate.Date.ToString("dd/MM/yyyy")</p>
                 </div>
 
                 <div class="creator pt-3">
@@ -82,10 +82,10 @@
         </div>
 
         <div class="thresholds text-center w-100">
-            <h2 class="mb-5">Récompenses</h2>
+            <h2 class="mb-5 mt-5">Récompenses</h2>
             @foreach (var threshold in Model.ProjectThresholds)
             {
-                <div class="threshold-container pb-3 pt-3 d-flex justify-content-around align-items-center border-bottom">
+                <div class="threshold-container pb-3 pt-3 d-flex justify-content-between align-items-center border-bottom">
                     <h3>@string.Format("{0:C2}", threshold.Amount)</h3>
                     <p>@threshold.Description</p>
 

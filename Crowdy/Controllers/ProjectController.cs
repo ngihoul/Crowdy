@@ -3,6 +3,7 @@ using Crowdy.BLL.Services.Interfaces;
 using Crowdy.DAL.Entities;
 using Crowdy.Mappers;
 using Crowdy.Models;
+using Crowdy.Tools;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Crowdy.Controllers
@@ -70,6 +71,7 @@ namespace Crowdy.Controllers
         }
 
         [HttpGet]
+        [ConnectedOnly]
         public IActionResult Create()
         {
             ProjectFormView model = new ProjectFormView();
@@ -78,6 +80,7 @@ namespace Crowdy.Controllers
         }
 
         [HttpPost]
+        [ConnectedOnly]
         public IActionResult Create([FromForm] ProjectFormView model, IFormFile? file)
         {
             if (!ModelState.IsValid)
@@ -114,8 +117,7 @@ namespace Crowdy.Controllers
                 }
 
                 // Handling User
-                // TODO : get connected User
-                User user = _userService.GetOneByEmail("ngihoul@hotmail.com");
+                User user = _authService.GetUser();
                 project.Owner = user;
 
                 _projectService.Create(project);
@@ -131,6 +133,7 @@ namespace Crowdy.Controllers
         }
 
         [HttpGet]
+        [ConnectedOnly]
         public IActionResult Contribute(int id)
         {
             try
@@ -154,6 +157,7 @@ namespace Crowdy.Controllers
         }
 
         [HttpPost]
+        [ConnectedOnly]
         public IActionResult Contribute([FromForm] ContributionFormView model)
         {
             try

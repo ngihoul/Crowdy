@@ -48,6 +48,9 @@ a {
     }
 }
 
+.navbar-brand {
+    font-family: "Pacifico", cursive;
+}
 /* Register & Create project */
 .preview-img {
     max-height: 350px;
@@ -56,6 +59,7 @@ a {
 /* Home */
 .hero-anonymous, .hero-connected {
     margin: -16px;
+    height: calc(100vh - 56px);
     padding: 5rem;
 
     .container {
@@ -118,4 +122,11 @@ a {
     h2 {
            padding-bottom: 2.5rem;
        }
+}
+
+.project-form .preview-container {
+
+    img {
+            transform: rotate(-1deg);
+        }
 }

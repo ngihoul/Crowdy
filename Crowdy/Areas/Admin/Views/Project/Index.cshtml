@@ -47,10 +47,10 @@
                         @string.Format("{0:C2}", project.Objective)
                     </td>
                     <td>
-                        @project.StartDate
+                        @project.StartDate.Date.ToString("dd/MM/yyyy")
                     </td>
                     <td>
-                        @project.EndDate
+                        @project.EndDate.Date.ToString("dd/MM/yyyy")
                     </td>
                     <td>
                         @project.Status.Name

@@ -22,6 +22,7 @@ namespace Crowdy.DAL.Repositories
         public User? GetOneById(int key)
         {
             return _context.Users.Include(u => u.Roles)
+                                 .Include(u => u.OwnedProjects)
                                  .FirstOrDefault(u => u.Id == key);
         }
 

@@ -16,7 +16,7 @@
         public User Owner { get; set; } = new User();
         public Status Status { get; set; } = new Status();
         public string? Comment { get; set; }
-        public User? ValidatedBy { get; set; } = new User();
+        public User? ValidatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         #endregion
